@@ -1,0 +1,24 @@
+<h1>Editing coupon</h1>
+
+<% form_for(@coupon) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :order_id %><br />
+    <%= f.text_field :order_id %>
+  </p>
+  <p>
+    <%= f.label :deal_id %><br />
+    <%= f.text_field :deal_id %>
+  </p>
+  <p>
+    <%= f.label :token %><br />
+    <%= f.text_field :token %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @coupon %> |
+<%= link_to 'Back', coupons_path %>

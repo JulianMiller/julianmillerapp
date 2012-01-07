@@ -1,0 +1,205 @@
+<% form_for @order,  :html => { :id=>"checkout", :class => "page_forms" }   do |f| %>
+  <%= f.error_messages %> 
+  <% fields_for(@coupon) do |coupon| %>
+  <table>
+	<tbody>
+		<tr>
+		  <th class="item_description">Item Description</th>
+		  <th class="price">Price</th>
+		  <th class="quantity">Quantity</th>
+		  <th class="total">Total</th>
+		</tr>
+		<tr>
+		  <td class="item_description"><%= @order.deal.description %></td>
+		  <td class="price"><%= number_to_currency ( @order.deal.price) %> </td>
+		  <td class="quantity"><%= coupon.text_field :quantity %></td>
+		  <td class="total"><%= h @order.total_price %></td>
+		</tr>
+	  </tbody>
+  </table>
+  <% end %>
+  <ul class="two_cols">
+	<li>
+	  <%= f.label :first_name %><br />
+	  <div class="text_field_l">
+		<div class="text_field_r">
+		  <%= f.text_field :first_name %>
+		</div>
+	  </div>
+	</li>
+	<li>
+		<%= f.label :card_number %><br />
+	  <div class="text_field_l">
+		<div class="text_field_r">
+		  <%= f.text_field :card_number %>
+		</div>
+	  </div>
+	</li>
+  <li>
+	<div class="cols monthyear">
+	  <label>Expiration Date:</label>
+		  <div>
+			<select id="cardmonth" name="order[exp_month]">
+			  <option value="">Month</option>
+			  <option value="1">1</option>
+			  <option value="2">2</option>
+			  <option value="3">3</option>
+			  <option value="4">4</option>
+			  <option value="5">5</option>
+			  <option value="6">6</option>
+			  <option value="7">7</option>
+			  <option value="8">8</option>
+			  <option value="9">9</option>
+			  <option value="10">10</option>
+			  <option value="11">11</option>
+			  <option value="12">12</option>
+			</select>
+		  </div>
+		  <div>
+			<select id="cardyear" name="order[exp_year]">
+			  <option value="">Year</option>
+			  <option value="2010">2010</option>
+			  <option value="2011">2011</option>
+			  <option value="2012">2012</option>
+			  <option value="2013">2013</option>
+			  <option value="2014">2014</option>
+			  <option value="2015">2015</option>
+			  <option value="2016">2016</option>
+			  <option value="2017">2017</option>
+			  <option value="2018">2018</option>
+			  <option value="2019">2019</option>
+			  <option value="2020">2020</option>
+			  <option value="2021">2021</option>
+			  <option value="2022">2022</option>
+			  <option value="2023">2023</option>
+			  <option value="2024">2024</option>
+			  <option value="2025">2025</option>
+			</select>
+		  </div>
+		</div>	
+	  </li>
+  <li class="cols cvv">
+	<%= f.label :CVV %>
+	<div class="text_field_l">
+	  <div class="text_field_r">
+		<%= f.text_field :security_code %>
+	  </div>
+	</div>
+  </li>
+</ul>
+<ul class="two_cols">
+  <li>
+	<%= f.label :address_1 %><br />
+	<div class="text_field_l">
+	  <div class="text_field_r">
+		  <%= f.text_field :address_1 %>
+	  </div>
+	</div>
+  </li>
+  <li>
+	<%= f.label :address_2 %><br />
+	<div class="text_field_l">
+	  <div class="text_field_r">
+		<%= f.text_field :address_2 %>
+	  </div>
+	</div>
+  </li>  
+  <li>
+	<%= f.label :city %><br />
+	<div class="text_field_l">
+	  <div class="text_field_r">
+		<%= f.text_field :city %>
+	  </div>
+	</div>
+  </li>
+  <li>
+	<div class="cols state">
+	<!-- a state select list with long names for keys and short names for display  -->
+	
+	<label>State</label>
+	  <select id="order_credit_card_attributes_state" name="order[state]">
+		<option value="">State</option>
+		<option value="Alaska">AK</option>
+		<option value="Alabama">AL</option>
+		<option value="Arkansas">AR</option>
+		<option value="Arizona">AZ</option>
+		<option value="California">CA</option>
+		<option value="Colorado">CO</option>
+		<option value="Connecticut">CT</option>
+		<option value="District of Columbia">DC</option>
+		<option value="Delaware">DE</option>
+		<option value="Florida">FL</option>
+		<option value="Georgia">GA</option>
+		<option value="Hawaii">HI</option>
+		<option value="Iowa">IA</option>
+		<option value="Idaho">ID</option>
+		<option value="Illinois">IL</option>
+		<option value="Indiana">IN</option>
+		<option value="Kansas">KS</option>
+		<option value="Kentucky">KY</option>
+		<option value="Louisiana">LA</option>
+		<option value="Massachusetts">MA</option>
+		<option value="Maryland">MD</option>
+		<option value="Maine">ME</option>
+		<option value="Michigan">MI</option>
+		<option value="Minnesota">MN</option>
+		<option value="Missouri">MO</option>
+		<option value="Mississippi">MS</option>
+		<option value="Montana">MT</option>
+		<option value="North Carolina">NC</option>
+		<option value="North Dakota">ND</option>
+		<option value="Nebraska">NE</option>
+		<option value="New Hampshire">NH</option>
+		<option value="New Jersey">NJ</option>
+		<option value="New Mexico">NM</option>
+		<option value="Nevada">NV</option>
+		<option value="New York">NY</option>
+		<option value="Ohio">OH</option>
+		<option value="Oklahoma">OK</option>
+		<option value="Oregon">OR</option>
+		<option value="Pennsylvania">PA</option>
+		<option value="Palau">PW</option>
+		<option value="Rhode Island">RI</option>
+		<option value="South Carolina">SC</option>
+		<option value="South Dakota">SD</option>
+		<option value="Tennessee">TN</option>
+		<option value="Texas">TX</option>
+		<option value="Utah">UT</option>
+		<option value="Virginia">VA</option>
+		<option value="Virgin Island">VI</option>
+		<option value="Vermont">VT</option>
+		<option value="Washington">WA</option>
+		<option value="Wisconsin">WI</option>
+		<option value="West Virginia">WV</option>
+		<option value="Wyoming">WY</option>
+	  </select>
+	</div>
+	<div class="cols zip">
+	<label>ZIP</label>
+	  <div class="text_field_l">
+		<div class="text_field_r">
+		  <%= f.text_field :zip_code %>
+		</div>
+	  </div>
+	</div>
+  </li>
+  <li>
+	<label>Phone</label>
+	<div class="text_field_l">
+		<div class="text_field_r">
+		  <%= f.text_field :phone %>
+		</div>
+	  </div>	
+  </li> 
+   
+</ul>  
+
+
+<p>
+  <%= link_to "Continue Shopping", deals_url %> |
+  <%= link_to "Checkout", @order.paypal_url(deals_url) %>
+</p>
+<div id="order_is_processing"></div> 
+<input type="hidden" name="deal_id"  value="<%= @order.deal.id %>" />
+  
+<% end %> <!-- end form_for order -->

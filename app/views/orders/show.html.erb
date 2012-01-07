@@ -1,0 +1,49 @@
+<ul>
+<% @order.coupons.each do |c| %>
+<li><b>Deal: </b><%=h c.deal.name  %></li>
+<li><b>Total: </b><%= number_to_currency(c.total_spent)%></li>
+<% end %>
+</ul>
+
+<p>
+  <b>First name:</b>
+  <%=h @order.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @order.last_name %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%=h @order.address_1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%=h @order.address_2 %>
+</p>
+<p>
+  <b>City:</b>
+  <%=h @order.city %>
+</p>
+<p>
+  <b>State:</b>
+  <%=h @order.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @order.zip_code %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @order.phone %>
+</p>
+
+
+<%=  link_to "Edit", :controller => "orders" , :action => "edit"%>
+|
+<%= link_to 'Back', orders_path %>

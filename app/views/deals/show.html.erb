@@ -1,0 +1,103 @@
+<script>
+jQuery('.nav li:first').addClass('current');
+</script>
+<div class="mod-ext grid-580 bg-color0">
+  <div class="mod-ext todays_scp scp_color2 txt2">
+    <span class="scp_color1">Daily CheckUp:</span> <%= @deal.name %>
+  </div>
+  <div class="mod-ext the_deal">
+    <div class="the_deal_snap">
+      <img src="<%= @deal.photo %>" alt="<%= @deal.name %>" />
+    </div>
+    <div class="the_deal_info">
+      <div class="mod center scp_color1 txt3">
+        $<%= @deal.price %>
+      </div>
+
+<%=  link_to image_tag("/images/deals/buy_now.png") , :controller => "orders" , :action => "new", :deal_id => @deal %>
+      <br />
+      <div class="center">
+        <ul class="value_info">
+          <li>
+            <%= @deal.off %>%<span>off</span>
+          </li>
+
+          <li>
+            $<%= @deal.value %><span>value</span>
+          </li>
+          <li>
+            $<%= @deal.savings %><span>savings</span>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="mod-ext center txt4 scp_color3"><span class="txt5">Hurry!</span> Time's a tickin'.</div>
+      <div class="the_time">
+        <div id="countdown" class="timer scp_bg_color4 rounded center txt5 color0"></div>
+        <span class="txt6 center w-60">hours</span>
+        <span class="txt6 center w-60">minutes</span>
+        <span class="txt6 center w-60">seconds</span>
+      </div>
+    </div><!-- deal info ends here -->
+    <div class="clear"></div>
+    <div class="mod some_info">
+      <br />
+      <% if @deal.activated %>
+        <% if @deal.max && @deal.sold >= (0.75 * @deal.max) %>
+      <div id="progress_bar_wrapper" class="f-left">
+        <div class="f-left txt8 status">Status: <span class="scp_color1 txt-trans-up">ACTIVE!</span></div>
+        <div class="f-right sold scp_color2 txt4"><span class="txt2"><%= @deal.sold %></span> have been sold.</div>
+        <div class="clear"></div>
+        <div id="progress_bar">
+          <div class="indicator step_2">bar</div>
+        </div>
+        <div class=" mod f-right scp_color2 txt8">
+          Act Now - Only <span class="scp_color11"><%= (@deal.max - @deal.sold) %></span> available.
+        </div>
+      </div>
+        <% else %>
+      <div class="deal_on">
+        <div class="scp_color2 purchases lh-55">
+          <%= @deal.sold %> purchased.
+        </div>
+      </div>
+        <% end %>
+      <% else %>
+      <div id="progress_bar_wrapper" class="f-left">
+        <div class="f-left txt8 status">Status: <span class="scp_color11 txt-trans-up">Not yet active!</span></div>
+        <div class="f-right sold scp_color2 txt4">
+          <span class="txt2"><%= @deal.sold %></span> have been sold.
+        </div>
+        <div class="clear"></div>
+        <div id="progress_bar">
+          <div class="indicator step_1">bar</div>
+        <% if @deal.min == 10 && @deal.sold <= 10 %>
+          <div class="indicator step_2" style="width:<%= @deal.sold*5 %>px;position:absolute;top:0;left:0;">
+            bar
+          </div>
+        <% elsif @deal.min == 5 && @deal.sold <= 5 %>
+          <div class="indicator step_2" style="width:<%= @deal.sold*10 %>px;position:absolute;top:0;left:0;">
+            bar
+          </div>
+        <% end %>
+        </div>
+        <div class="f-left activation scp_color13">
+          <strong><%= @deal.remaining %></strong> to activate.
+        </div>
+        <div class="f-right"></div>
+        <div class="clear"></div>
+      </div>
+      <% end %>
+
+
+      <%#= render "tell_a_friend" %>
+
+      <div class="clear"></div>
+    </div><!-- deal's on ends here -->
+  </div><!-- current deal ends here -->
+</div><!-- inner container ends here -->
+
+<%#= render "company_info" %>
+
+<%= link_to 'Edit', edit_deal_path(@deal) %> <!-- | -->
+<%= link_to 'Back', deals_path %>

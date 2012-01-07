@@ -1,0 +1,19 @@
+<h1>Get em while they last</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @deals.each do |deal| %>
+  <tr>
+	<td><%= h deal.name %><br/><%= h deal.photo %></td>
+    <td><%= link_to 'Show', deal %></td>
+    <td><%= link_to 'Edit', edit_deal_path(deal) %></td>
+    <td><%= link_to 'Destroy', deal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New deal', new_deal_path %>

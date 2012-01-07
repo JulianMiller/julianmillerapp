@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title %></title>
+    <%= csrf_meta_tag %>
+  	<%= render 'layouts/stylesheets' %>
+	<%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+		<%= render 'layouts/header' %>
+			<div id="wrapper">
+
+			  <!-- VIEW TEMPLATE Content DIV -->
+			  <div id="content"><div class="clear"></div>
+				<% flash.each do |key, value| %>
+				  <div class="flash <%= key %>" > <%= value %></div>
+				<% end %>
+				<%= yield %>
+			  </div>
+			  <div class="sidebar">
+				<div class="spiff">
+				 <%= render 'layouts/sidebar' %>
+				</div>
+			  </div>
+			</div>	 <div class="divClear"></div> 
+	   		  <%= render 'layouts/footer' %>
+  </body>
+
+</html>

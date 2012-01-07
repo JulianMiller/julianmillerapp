@@ -1,0 +1,14 @@
+<% content_for :content do %>
+<div class="container_12">
+  <div class="content_wrapper grid-640 f-left">
+    <div class="content scp_bg-color3">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+  <%= content_for?(:sidebar) ? yield(:sidebar) : render(:partial => "sidebar") %>
+</div>
+<% end %>
+<%= render :file => 'layouts/application' %>
